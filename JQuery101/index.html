@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 101 Project</title>
+    <style>
+      button {
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="pokemon-gen-button">Generate a random pokemon</button>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+      function titleCase(str) {
+        var splitStr = str.toLowerCase().split(' ');
+        for (var i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+        }
+        // Directly return the joined string
+        return splitStr.join(' '); 
+      }
+      $(document).ready(() => {
+        console.log("JQuery is loaded")
+      })
+      $("#pokemon-gen-button").on("click", event => {
+        event.preventDefault();
+        var id = Math.ceil(Math.random() * 898)
+        $("#pokemon").remove()
+        $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(data) {
+          console.log(data)
+          var pokemon_name = titleCase(data.forms[0].name)
+          $("#pokemon-gen-button").after(
+          `<div id="pokemon" style="text-align: center">
+            <h2>${pokemon_name}</h2>
+            <img style="width: 30%" src="${data.sprites.front_default}" alt="${pokemon_name}'s image">
+          </div>`)
+        })
+      })
+      
+    </script>
+  </body>
+</html>

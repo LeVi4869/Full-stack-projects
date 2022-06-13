@@ -1,0 +1,4 @@
+Deposited 50
+Withdrew 50
+Deposited 50	Remaining amount: 150
+Withdrew 50	Remaining amount: 100

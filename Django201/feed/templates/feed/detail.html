@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ post.text }} by {{ post.author }}
+{% endblock %}
+
+{% block body %}
+    {% include "includes/post.html" with post=post show_detail_link=False %}
+{% endblock %}

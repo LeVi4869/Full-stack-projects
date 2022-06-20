@@ -3,7 +3,9 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
+
 from followers.models import Follower
+from django.contrib import messages
 from .models import Post
 
 class HomePage(TemplateView):
@@ -56,6 +58,7 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
             text = request.POST.get("text"),
             author = request.user,
         )
+        messages.add_message(self.request, messages.SUCCESS, "Your Post Is Submitted !!")
         return render(request, "includes/post.html", {
             "post": post,
             "show_detail_link": True,

@@ -12,6 +12,7 @@ class Profile(models.Model):
         related_name="profile"
     )
     image = ImageField(upload_to='profiles')
+    bg_image = ImageField(default='bg_image/back_default.jpg',upload_to='bg_image')
 
     def __str__(self):
         return self.user.username

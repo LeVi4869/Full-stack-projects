@@ -17,17 +17,16 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import LoginView
-from .forms import CustomLoginForm
 from feed import urls as feed_urls
 from profiles import urls as profiles_urls
+from profiles.views import profile
 
 app_name = "til"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', LoginView.as_view(authentication_form=CustomLoginForm), name="login"),
     path('', include(feed_urls, namespace="feed")),
     path('profile/', include(profiles_urls, namespace="profiles")),
+    path("profile/", profile, name="profile"),
     re_path("", include("allauth.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

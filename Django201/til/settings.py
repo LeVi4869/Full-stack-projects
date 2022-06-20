@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'profiles',
     'followers',
     'allauth',
+    'crispy_forms',
     'allauth.account',
     'allauth.socialaccount',
     'sorl.thumbnail'

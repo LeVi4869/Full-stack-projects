@@ -27,7 +27,21 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        <main>
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
+        </main>
+
+        <footer>
+            {% if settings.site_settings.SocialMediaSettings.instagram %}
+                <a href="{{ settings.site_settings.SocialMediaSettings.instagram }} ">
+                    Follow us on instagram
+                </a>
+            {% endif %}
+        </footer>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/sevendays.js' %}"></script>
